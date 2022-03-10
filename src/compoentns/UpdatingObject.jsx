@@ -1,42 +1,40 @@
 import { useState } from "react";
 
-const friendsArray = [
-    {
-        id: 1,
-        name: "handy",
-        age: 19,
-    },
-    {
-        id: 2,
-        name: "Candy",
-        age: 18,
-    },
-    {
-        id: 3,
-        name: "mandy",
-        age: 20,
-    },
-];
 
-const UpdatingObject = () => {
-    const [friends, setFriends] = useState(friendsArray);
+const UpdatingObject = ({friendsArray}) => {
 
-    const handleSecondFriend = () => {
-        setFriends(
-            friends.map((friend) =>
-                friend.id === 2
-                    ? { ...friend, name: "Changed Name" }
-                    : { ...friend }
-            )
-        );
+  // I've passed down the initial state as props
+const [friends, setFriends] = useState(friendsArray);
+
+// This function will update my state when I press it 
+// I need to update this so it updates for only the pressed values
+
+    // const handleSecondFriend = () => {
+    //     setFriends(
+    //         friends.map((friend) =>
+    //             friend.id === 1
+    //                 ? { ...friend, name: "Changed Name" }
+    //                 : { ...friend }
+    //         )
+    //     );
+    // };
+
+   const setFriends = () => {
+      friends.map((friend) =>
+        friend.id === 1 ? { ...friend, name: "Changed Name" } : { ...friend }
+      );
     };
 
-    return (
+
+
+return (
+
         <ul>
             {friends.map((friend) => (
                 <li key={friend.id}>
                     <span>name: {friend.name}</span>{" "}
                     <span>age: {friend.age}</span>
+                  
                 </li>
             ))}
             <button onClick={handleSecondFriend}>Change Second Name</button>
